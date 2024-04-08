@@ -16,6 +16,7 @@ export default function OnlineBox({ friends ,setText}) {
     setChatUserId(id);
     setChatUserImg(img);
     setShowOnline(!showOnline);
+    setUsersMessageChat(null)
   };
 
   useEffect(() => {

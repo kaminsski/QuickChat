@@ -3,13 +3,11 @@ import { MessageContext } from "../providers/MessageProvider";
 import axios from "axios";
 import OnlineBox from "./OnlineBox";
 import moment from"moment"
-import Loader from "./Loader";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Dashboard() {
   const {
     user,
-    setUsersMessage,
     usersMessage,
     chatUser,
     chatUserId,
@@ -17,10 +15,18 @@ export default function Dashboard() {
     setUsersMessageChat,
     usersMessageChat
   } = useContext(MessageContext);
-  const navigate=useNavigate()
 
   const [text, setText] = useState("");
   const [friend, setFriend] = useState([]);
+
+
+  useEffect(() => {
+    
+   
+   
+  }, [usersMessageChat]);
+
+
   const textHandle = async (e) => {
     e.preventDefault();
     try {
@@ -35,12 +41,19 @@ export default function Dashboard() {
           Authorization: token,
         },
       });
-      setUsersMessageChat(response.data.updated.messages);
+      const messages = response.data.updated.messages
+
+      setUsersMessageChat(messages);
       setText("");
+      console.log(usersMessageChat);
+   
     } catch (error) {
-      navigate("/login")
+      console.log(error);
     }
   };
+
+
+  
 
   useEffect(() => {
     const scroll = document.getElementById("scroll");
