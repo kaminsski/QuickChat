@@ -10,7 +10,7 @@ export default function Modal({ setModal }) {
   useEffect(() => {
     const userInfoFn = async () => {
       const response = await axios.get(
-        `http://localhost:7001/api/user/${user._id}`
+        `https://quick-chat-alpha.vercel.app/api/user/${user._id}`
       );
       setmodalUsername(response.data.user.username);
       setmodalEmail(response.data.user.email);
@@ -29,7 +29,7 @@ export default function Modal({ setModal }) {
     formData.append("photo", modalPhoto);
     try {
       const response = await axios.put(
-        `http://localhost:7001/api/user/${user._id}`,
+        `https://quick-chat-alpha.vercel.app/api/user/${user._id}`,
         formData
       );
       updateUser(response.data)

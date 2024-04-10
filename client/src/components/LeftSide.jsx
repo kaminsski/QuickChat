@@ -14,7 +14,7 @@ export default function LeftSide() {
         const user = JSON.parse(localStorage.getItem("user"));
         const token = user.token
 
-        const url = `http://localhost:7001/api/messages/box/${user._id}`;
+        const url = `https://quick-chat-alpha.vercel.app/api/messages/box/${user._id}`;
         const response = await axios.get(url, {
           headers: {
             Authorization: token,

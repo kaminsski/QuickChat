@@ -11,7 +11,7 @@ export default function Login() {
   const submitHandle = async (e) => {
     e.preventDefault();
 
-    const response = await axios.post("http://localhost:7001/api/user/login", {
+    const response = await axios.post("https://quick-chat-alpha.vercel.app/api/user/login", {
       username,
       password,
     });

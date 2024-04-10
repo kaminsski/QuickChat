@@ -26,7 +26,7 @@ export default function Dashboard() {
         const user = JSON.parse(localStorage.getItem("user"));
         const token = user.token;
 
-        const url = `http://localhost:7001/api/messages/box/${user._id}`;
+        const url = `https://quick-chat-alpha.vercel.app/api/messages/box/${user._id}`;
         const response = await axios.get(url, {
           headers: {
             Authorization: token,
@@ -55,7 +55,7 @@ export default function Dashboard() {
       const user = JSON.parse(localStorage.getItem("user"));
       const token = user.token;
       const response = await axios.post(
-        "http://localhost:7001/api/messages",
+        "https://quick-chat-alpha.vercel.app/api/messages",
         {
           text,
           sender: user._id,
@@ -83,7 +83,7 @@ export default function Dashboard() {
   }, [usersMessage]);
 
   const searchFriend = async () => {
-    const response = await axios.get("http://localhost:7001/api/user/");
+    const response = await axios.get("https://quick-chat-alpha.vercel.app/api/user/");
     setFriend(response.data.users);
   };
   return (
@@ -94,7 +94,7 @@ export default function Dashboard() {
             {chatUserImg && (
               <img
                 className="rounded-full w-20 h-20 object-cover"
-                src={`http://localhost:7001/${chatUserImg}`}
+                src={`https://quick-chat-alpha.vercel.app/${chatUserImg}`}
                 alt="User Photo"
               />
             )}

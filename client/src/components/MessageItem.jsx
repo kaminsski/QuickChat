@@ -22,7 +22,7 @@ function MessageItem({ message }) {
 
       if (message.user1 === user._id) {
         const friend = await axios.get(
-          `http://localhost:7001/api/user/${message.user2}`
+          `https://quick-chat-alpha.vercel.app/api/user/${message.user2}`
         );
         setChatFriend(friend.data.user.username);
         setChatFriendImg(friend.data.user.photo);
@@ -31,7 +31,7 @@ function MessageItem({ message }) {
       }
       if (message.user2 === user._id) {
         const friend = await axios.get(
-          `http://localhost:7001/api/user/${message.user1}`
+          `https://quick-chat-alpha.vercel.app/api/user/${message.user1}`
         );
         setChatFriend(friend.data.user.username);
         setChatFriendImg(friend.data.user.photo);
@@ -49,7 +49,7 @@ function MessageItem({ message }) {
       try {
         if (message.user1 === user._id) {
           const friend = await axios.get(
-            `http://localhost:7001/api/user/${message.user2}`
+            `https://quick-chat-alpha.vercel.app/api/user/${message.user2}`
           );
           setChatUser(friend.data.user.username);
           setChatUserId(friend.data.user._id);
@@ -57,7 +57,7 @@ function MessageItem({ message }) {
         }
         if (message.user2 === user._id) {
           const friend = await axios.get(
-            `http://localhost:7001/api/user/${message.user1}`
+            `https://quick-chat-alpha.vercel.app/api/user/${message.user1}`
           );
           setChatUser(friend.data.user.username);
           setChatUserId(friend.data.user._id);
@@ -85,7 +85,7 @@ function MessageItem({ message }) {
         {chatFriendImg &&
           <img
             className=" rounded-full object-cover h-[80px] w-[80px] hidden md:inline "
-            src={`http://localhost:7001/${ chatFriendImg}`}
+            src={`https://quick-chat-alpha.vercel.app/${ chatFriendImg}`}
             alt="no image"
           />}
         </div>

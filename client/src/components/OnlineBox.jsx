@@ -26,7 +26,7 @@ export default function OnlineBox({ friends ,setText}) {
 
         const user = JSON.parse(localStorage.getItem("user"));
         const token = user.token
-        const url = `http://localhost:7001/api/messages/box/${user._id}`;
+        const url = `https://quick-chat-alpha.vercel.app/api/messages/box/${user._id}`;
         const response = await axios.get(url, {
           headers: {
             Authorization: token,
@@ -91,7 +91,7 @@ dark:hover:bg-blue-700 dark:focus:ring-blue-800 fixed bottom-0 right-0
                 >
                   <img
                     className="w-6 h-6 me-2 rounded-full"
-                    src={`http://localhost:7001/${friend.photo}`}
+                    src={`https://quick-chat-alpha.vercel.app/${friend.photo}`}
                     alt="Jese image"
                   />
                   {friend.username}

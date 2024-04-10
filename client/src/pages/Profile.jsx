@@ -14,7 +14,7 @@ export default function Profile() {
           <div className="w-2/3 md:w-1/3 h-48 shadow-xl">
             <div className="flex w-full h-full relative">
               <img
-                src={`http://localhost:7001/${user && user.photo}`}
+                src={`https://quick-chat-alpha.vercel.app/${user && user.photo}`}
                 className="w-44 h-44 m-auto object-cover"
                 alt=""
               />

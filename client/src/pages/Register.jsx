@@ -21,7 +21,7 @@ export default function Register() {
     formData.append("photo", photo);
     try {
       const response = await axios.post(
-        "http://localhost:7001/api/user/register",
+        "https://quick-chat-alpha.vercel.app/api/user/register",
 
         formData
       );
