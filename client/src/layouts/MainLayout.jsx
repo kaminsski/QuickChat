@@ -14,13 +14,13 @@ export default function MainLayout(props) {
       <Header></Header>
       <div className="flex">
         {user && location.pathname === "/" && (
-          <div className="w-1/4">
+          <div className="w-2/5 md:w-1/4">
             <LeftSide></LeftSide>
           </div>
         )}
 
-        {user && location.pathname !=="/profile" ? (
-          <div className="w-3/4">{props.children}</div>
+        {user && user._id && location.pathname !=="/profile" ? (
+          <div className="w-3/5 md:w-3/4">{props.children}</div>
         ) : (
           <div className="w-full bg-gray-400">{props.children}</div>
         )}

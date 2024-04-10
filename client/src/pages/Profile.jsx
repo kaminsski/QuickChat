@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { MessageContext } from '../providers/MessageProvider';
 import Modal from '../components/Modal';
+import { FiEdit } from "react-icons/fi";
 
 export default function Profile() {
   const [modal, setModal] = useState(false)
@@ -9,12 +10,12 @@ export default function Profile() {
   return (
     <div className='min-h-screen'>
        <div className="bg-gray-100 min-h-screen">
-          <div className="cardTop flex flex-wrap  items-center sm:flex justify-center">
+          <div className="cardTop flex flex-wrap  items-center sm:flex justify-center pt-20">
           <div className="w-2/3 md:w-1/3 h-48 shadow-xl">
             <div className="flex w-full h-full relative">
               <img
                 src={`http://localhost:7001/${user && user.photo}`}
-                className="w-44 h-44 m-auto"
+                className="w-44 h-44 m-auto object-cover"
                 alt=""
               />
             </div>
@@ -25,7 +26,7 @@ export default function Profile() {
                 Name:
               </span>
               <input
-                className="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
+                className="px-4 cursor-default w-4/6 m-1"
                 type="text"
                 value={user ? user.username : ""}
                 readOnly
@@ -36,7 +37,7 @@ export default function Profile() {
                 Email:
               </span>
               <input
-                className="px-4 border-l-0 cursor-default border-gray-300 focus:outline-none rounded-md rounded-l-none shadow-sm -ml-1 w-4/6"
+                className="px-4 cursor-default w-4/6 m-1"
                 type="text"
                 value={user ? user.email : ""}
                 readOnly
@@ -45,7 +46,8 @@ export default function Profile() {
 
             <div className="flex justify-center">
             <div className="md:col-span-3 p-4 flex justify-center">
-            <button onClick={()=>setModal(!modal)} className="font-bold uppercase text-center text-2xl bg-yellow-300 p-2 rounded-lg"> Edit Profile</button>
+            <button onClick={()=>setModal(!modal)} className="flex justify-center items-center gap-3 font-semibold uppercase text-center text-2xl bg-gray-300 p-2 rounded-lg"><FiEdit />
+ Edit </button>
             
           </div>
             </div>

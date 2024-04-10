@@ -32,7 +32,7 @@ export default function LeftSide() {
   }, [usersMessageChat]);
   return (
     <>
-      <div className="bg-blue-100 w-1/4 min-h-screen max-h-screen overflow-scroll absolute left-0">
+      <div className="bg-blue-100 w-2/5 md:w-1/4  min-h-screen max-h-screen overflow-scroll absolute left-0">
         <h3 className="text-2xl text-center font-bold">Your Chats</h3>
         {usersMessage.map((message) => {
           return <MessageItem key={message._id} message={message} />;

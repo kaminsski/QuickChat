@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { MessageContext } from "../providers/MessageProvider";
 import axios from "axios";
 import OnlineBox from "./OnlineBox";
-import moment from"moment"
-
+import moment from "moment";
 
 export default function Dashboard() {
   const {
@@ -13,47 +12,68 @@ export default function Dashboard() {
     chatUserId,
     chatUserImg,
     setUsersMessageChat,
-    usersMessageChat
+    usersMessageChat,
   } = useContext(MessageContext);
 
   const [text, setText] = useState("");
+  const [fetch, setFetch] = useState(false);
+
   const [friend, setFriend] = useState([]);
 
-
   useEffect(() => {
-    
-   
-   
-  }, [usersMessageChat]);
+    const fetchData = async () => {
+      try {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const token = user.token;
 
+        const url = `http://localhost:7001/api/messages/box/${user._id}`;
+        const response = await axios.get(url, {
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        const filteredMessages = response.data.messages.filter(
+          (message) =>
+            message.user1 === chatUserId || message.user2 === chatUserId
+        );
+        if (filteredMessages.length > 0) {
+        setUsersMessageChat(filteredMessages[0].messages);
+          
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [fetch]);
 
   const textHandle = async (e) => {
     e.preventDefault();
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-        const token = user.token
-      const response = await axios.post("http://localhost:7001/api/messages", {
-        text,
-        sender: user._id,
-        recipient: chatUserId,
-      }, {
-        headers: {
-          Authorization: token,
+      const token = user.token;
+      const response = await axios.post(
+        "http://localhost:7001/api/messages",
+        {
+          text,
+          sender: user._id,
+          recipient: chatUserId,
         },
-      });
-      const messages = response.data.updated.messages
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
 
-      setUsersMessageChat(messages);
       setText("");
-      console.log(usersMessageChat);
-   
+      setFetch(!fetch);
     } catch (error) {
       console.log(error);
     }
   };
-
-
-  
 
   useEffect(() => {
     const scroll = document.getElementById("scroll");
@@ -70,14 +90,15 @@ export default function Dashboard() {
     <>
       <div className="chatContainer min-h-screen max-h-screen bg-orange-100 flex flex-col justify-between">
         {chatUser && (
-          <div className="friendBox bg-gray-400 p-2 flex items-center gap-10">
-            {chatUserImg && 
-            <img
-              className="rounded-full w-20 h-20 object-covers"
-              src={`http://localhost:7001/${chatUserImg}`}
-              alt="User Photo"
-            />}
-            <h3 className="text-3xl">{chatUser}</h3>
+          <div className="friendBox bg-gray-400 p-2 flex items-center gap-3 md:gap-10">
+            {chatUserImg && (
+              <img
+                className="rounded-full w-20 h-20 object-cover"
+                src={`http://localhost:7001/${chatUserImg}`}
+                alt="User Photo"
+              />
+            )}
+            <h3 className="text-3xl font-bold overflow-hidden">{chatUser}</h3>
           </div>
         )}
 
@@ -91,9 +112,13 @@ export default function Dashboard() {
               {
                 if (message.sender === user._id) {
                   return (
-                    <div key={message._id} className="flex justify-end">
+                    <div key={message._id} className="flex justify-end text-wrap">
                       <span className=" bg-white text-black p-2 my-1 mx-3 ">
-                         <span className="block">{message.text}</span> <span className=" text-xs"> {moment((message.createdAt)).fromNow()}</span>
+                        <span className="block overflow-hidden">{message.text}</span>{" "}
+                        <span className=" text-xs">
+                          {" "}
+                          {moment(message.createdAt).fromNow()}
+                        </span>
                       </span>
                     </div>
                   );
@@ -101,7 +126,11 @@ export default function Dashboard() {
                   return (
                     <div key={message._id} className="flex justify-start">
                       <span className=" bg-white text-black p-2 my-1 mx-3 ">
-                         <span className="block">{message.text}</span> <span className=" text-xs"> {moment((message.createdAt)).fromNow()}</span>
+                        <span className="block">{message.text}</span>{" "}
+                        <span className=" text-xs">
+                          {" "}
+                          {moment(message.createdAt).fromNow()}
+                        </span>
                       </span>
                     </div>
                   );

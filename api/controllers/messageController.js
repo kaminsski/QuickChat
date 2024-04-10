@@ -7,7 +7,7 @@ const getMessageBox= async(req,res)=>{
         const messages = await MessageBox.find({$or: [
             { user1: userId },
             { user2: userId }
-        ]})
+        ]}).sort({ updatedAt: -1 })
         res.json({messages:messages})
     } catch (error) {
         console.log(error);

@@ -84,14 +84,14 @@ function MessageItem({ message }) {
         <div className="imageContainer">
         {chatFriendImg &&
           <img
-            className=" rounded-full object-cover h-[80px] w-[80px]"
+            className=" rounded-full object-cover h-[80px] w-[80px] hidden md:inline "
             src={`http://localhost:7001/${ chatFriendImg}`}
             alt="no image"
           />}
         </div>
-        <div className="h-18 overflow-hidden my-1 px-3">
+        <div className="h-18 overflow-hidden my-1 p-0 md:px-3">
           <h4 className="text-2xl">{chatFriend}</h4>
-          <p className="">
+          <p className=" overflow-hidden text-nowrap">
             {message.messages && message.messages[message.messages.length - 1].text}
           </p>
         </div>
