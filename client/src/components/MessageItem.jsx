@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { MessageContext } from "../providers/MessageProvider";
 import axios from "axios";
 import Loader from "./Loader"
+import { BiMessageSquareDots } from "react-icons/bi";
+
 function MessageItem({ message }) {
   const [chatFriend, setChatFriend] = useState("");
   const [chatFriendImg, setChatFriendImg] = useState("");
@@ -79,7 +81,7 @@ function MessageItem({ message }) {
      
       <div
         onClick={messageHandle}
-        className="itemContainer flex bg-gray-300 my-1 p-2"
+        className="itemContainer flex bg-white my-2 p-2 rounded-lg mx-1 "
       >
         <div className="imageContainer">
         {chatFriendImg &&
@@ -90,8 +92,10 @@ function MessageItem({ message }) {
           />}
         </div>
         <div className="h-18 overflow-hidden my-1 p-0 md:px-3">
-          <h4 className="text-2xl">{chatFriend}</h4>
-          <p className=" overflow-hidden text-nowrap">
+          <h4 className="text-lg font-semibold">{chatFriend}</h4>
+          <p className=" overflow-hidden text-nowrap flex items-center">
+          <BiMessageSquareDots />
+
             {message.messages && message.messages[message.messages.length - 1].text}
           </p>
         </div>

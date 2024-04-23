@@ -33,9 +33,9 @@ export default function LeftSide({setSide, side}) {
   }, [usersMessageChat]);
   return (
     <>
-      <div className="bg-blue-100 w-2/5 md:w-1/4  min-h-screen max-h-screen overflow-scroll absolute left-0">
-        <div className="flex items-center justify-between">
-        <h3 className="text-xl text-center font-semibold">Your Chats</h3> <span><IoIosCloseCircle className="md:hidden" onClick={()=>setSide(!side)} size={20} color="red" />
+      <div className="bg-green-100 w-2/5 md:w-1/4  min-h-screen max-h-screen overflow-scroll absolute left-0">
+        <div className="flex items-center justify-between p-3">
+        <h3 className="text-xl text-center font-semibold"> Chats</h3> <span><IoIosCloseCircle className="md:hidden" onClick={()=>setSide(!side)} size={20} color="red" />
 </span>
         </div>
         {usersMessage.map((message) => {

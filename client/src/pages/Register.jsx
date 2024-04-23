@@ -53,7 +53,7 @@ export default function Register() {
  
 
   return (
-    <div className="bg-gray-400">
+    <div className="bg-gray-400 px-4">
       {errorBack && (
         <div className="mx-2 err bg-red-500 mb-3 p-2 text-white rounded-md">
           {errorBack}

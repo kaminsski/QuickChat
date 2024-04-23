@@ -20,7 +20,7 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-gray-400">
+    <div className="bg-gray-400 px-4">
       <form
         onSubmit={submitHandle}
         className="max-w-sm mx-auto min-h-screen mt-10"

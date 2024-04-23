@@ -140,13 +140,14 @@ export default function Dashboard() {
         </div>
         {chatUser && (
           <div className="w-full bg-gray-100">
-            <form className="flex pb-28" onSubmit={textHandle}>
+            <form className="flex mb-28" onSubmit={textHandle}>
               <input
                 value={text}
+                placeholder="Send a message"
                 onChange={(e) => {
                   setText(e.target.value);
                 }}
-                className="w-full h-16 p-2"
+                className="w-full h-16 p-2 ml-3 bg-gray-200 rounded-l-lg"
                 type="text"
                 name=""
                 id=""

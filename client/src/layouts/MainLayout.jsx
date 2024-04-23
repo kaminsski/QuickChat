@@ -11,13 +11,16 @@ export default function MainLayout(props) {
   const { user } = useContext(MessageContext);
   const location = useLocation();
   const [side, setSide] = useState(false)
+  
+  const isHomePage = location.pathname === "/";
   return (
     <>
       <Header></Header>
-      <div onClick={()=>setSide(!side)} className={`${side ? "left-2 top-20" :"left-2 top-44" } fixed  md:hidden bg-white p-2 rounded-full`}><MdChat size={50} color="green"/></div>
+      {isHomePage &&      <div onClick={()=>setSide(!side)} className={`${side ? "left-2 top-80" :"left-2 top-80" } fixed  md:hidden bg-white p-2 rounded-full`}><MdChat size={50} color="green"/></div>
+ }
       <div className="flex">
         {user && location.pathname === "/" && (
-          <div className={`${side ? null : "hidden"} w-2/5 md:w-1/4 left-2`} >
+          <div className={`${side ? null : "hidden md:block"} w-2/5 md:w-1/4 left-2`} >
             <LeftSide setSide={setSide} side={side}></LeftSide>
           </div>
         )}
