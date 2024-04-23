@@ -14,28 +14,24 @@ export default function Register() {
 
   const submitHandle = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-    formData.append("email", email);
-    formData.append("photo", photo);
+
     try {
       const response = await axios.post(
         "https://quick-chat-alpha.vercel.app/api/user/register",
 
-        formData
+        {username,password, email, photo}
       );
       localStorage.setItem("user", JSON.stringify(response.data));
       return (window.location.href = "/");
     } catch (error) {
+      console.log(error);
       if (
         error.response &&
         error.response.status === 400 &&
         error.response.data.message
       ) {
         setErrorBack([error.response.data.message]);
-      } else {
-      }
+      } 
     }
   };
 
@@ -53,6 +49,9 @@ export default function Register() {
       setKeyupPass(true)
     }
   };
+
+ 
+
   return (
     <div className="bg-gray-400">
       {errorBack && (
@@ -63,7 +62,7 @@ export default function Register() {
       <form
         onSubmit={submitHandle}
         className="max-w-sm mx-auto min-h-screen mt-10"
-        encType="multipart/form-data"
+   
       >
         <div className="mb-5">
           <label
@@ -74,10 +73,12 @@ export default function Register() {
           </label>
           <input
             name="photo"
+            placeholder="Profil Picture Url"
+
             onChange={(e) => {
-              setPhoto(e.target.files[0]);
+              setPhoto(e.target.value);
             }}
-            type="file"
+            type="text"
             id="photo"
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required

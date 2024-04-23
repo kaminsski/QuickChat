@@ -70,7 +70,7 @@ const updateUser = async(req,res)=>{
 
 const registerUser= async(req,res)=>{
     try {
-        const {username, email, password}= req.body
+        const {username, email, password,photo}= req.body
         // Validate username
       if (!validator.isLength(username, { min: 3 })) {
         return res.status(400).json({ message: 'Username must be at least 3 characters long' });
@@ -85,11 +85,8 @@ const registerUser= async(req,res)=>{
       if (!validator.isLength(password, { min: 6 })) {
         return res.status(400).json({ message: 'Password must be at least 6 characters long' });
       }
-        let photo = "";
-
-        if (req.file) {
-            photo = req.file.path;
-          }
+      
+          console.log(photo);
         if(!username || !email || !password){
             res.json({message:"Form is invalid"})
         }

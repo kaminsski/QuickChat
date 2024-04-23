@@ -34,7 +34,7 @@ router.get("/:id", getUser);
 router.get("/", getAllUser);
 router.put("/:id",upload.single("photo"), updateUser);
 
-router.post("/register", upload.single("photo"), registerUser);
+router.post("/register", registerUser);
 
 router.post("/login", loginUser);
 
