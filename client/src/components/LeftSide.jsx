@@ -3,8 +3,9 @@ import MessageItem from "./MessageItem";
 import axios from "axios";
 import { MessageContext } from "../providers/MessageProvider";
 import { useNavigate } from "react-router-dom";
+import { IoIosCloseCircle } from "react-icons/io";
 
-export default function LeftSide() {
+export default function LeftSide({setSide, side}) {
   const {usersMessage,setUsersMessage, usersMessageChat}=useContext(MessageContext)
   const navigate=useNavigate()
   useEffect(() => {
@@ -33,7 +34,10 @@ export default function LeftSide() {
   return (
     <>
       <div className="bg-blue-100 w-2/5 md:w-1/4  min-h-screen max-h-screen overflow-scroll absolute left-0">
-        <h3 className="text-2xl text-center font-bold">Your Chats</h3>
+        <div className="flex items-center justify-between">
+        <h3 className="text-xl text-center font-semibold">Your Chats</h3> <span><IoIosCloseCircle className="md:hidden" onClick={()=>setSide(!side)} size={20} color="red" />
+</span>
+        </div>
         {usersMessage.map((message) => {
           return <MessageItem key={message._id} message={message} />;
         })}
